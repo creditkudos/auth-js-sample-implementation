@@ -3,6 +3,7 @@ var router = express.Router();
 
 const jwt = require('jsonwebtoken');
 const OAuth2Client = require('client-oauth2')
+const { uuid } = require('uuidv4');
 
 const CLIENT_ID = "..."
 const CLIENT_SECRET = "..."
@@ -42,6 +43,7 @@ router.get('/redirect', (req, res) => {
   var uri = client.code.getUri({
     query: {
       customer_token: token,
+      state: uuid(),
       debug: true
     }
   })
